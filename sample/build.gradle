@@ -30,11 +30,6 @@ android {
         debug {
             applicationIdSuffix ".debug"
         }
-        staging {
-            applicationIdSuffix ".staging"
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -79,7 +74,9 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation project(':loadingviews')
 
     implementation deps.kotlin.stdlib.jre
     implementation deps.timber.core
