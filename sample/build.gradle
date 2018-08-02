@@ -80,6 +80,7 @@ dependencies {
 
     implementation deps.kotlin.stdlib.jre
     implementation deps.timber.core
+    implementation deps.android.support.recyclerView
     implementation deps.google.oosLicenses.core
 
     testImplementation deps.test.junit
