@@ -1,0 +1,89 @@
+buildscript {
+
+    ext.buildConfig = [
+            'compileSdk': 27,
+            'minSdk'    : 19,
+            'targetSdk' : 27,
+
+            'version'   : [
+                    'major': 0,
+                    'minor': 0,
+                    'patch': 1,
+            ],
+    ]
+
+    ext.buildConfig.version['name'] = "${buildConfig.version.major}.${buildConfig.version.minor}.${buildConfig.version.patch}"
+    ext.buildConfig.version['code'] = 1
+
+    ext.versions = [
+            // Basic
+            'kotlin'               : '1.2.30',
+            'supportLibrary'       : '27.0.2',
+            'constraintLayout'     : '1.0.2',
+            'googleServicesVersion': '15.0.0',
+
+            // Testing
+            'junit'                : '4.12',
+            'mockito'              : '2.8.9',
+            'robolectric'          : '3.8',
+            'expresso'             : '3.0.1',
+            'androidSupportRunner' : '1.0.1',
+    ]
+
+    ext.deps = [
+            'kotlin' : [
+                    'stdlib': [
+                            'jre': "org.jetbrains.kotlin:kotlin-stdlib-jre7:${versions.kotlin}",
+                    ]
+            ],
+            'android': [
+                    'support': [
+                            'supportV4'       : "com.android.support:support-v4:${versions.supportLibrary}",
+                            'appcompatV7'     : "com.android.support:appcompat-v7:${versions.supportLibrary}",
+                            'preferenceV7'    : "com.android.support:preference-v7:${versions.supportLibrary}",
+                            'preferenceV14'   : "com.android.support:preference-v14:${versions.supportLibrary}",
+                            'recyclerView'    : "com.android.support:recyclerview-v7:${versions.supportLibrary}",
+                            'annotations'     : "com.android.support:support-annotations:${versions.supportLibrary}",
+                            'vector'          : "com.android.support:support-vector-drawable:${versions.supportLibrary}",
+                            'design'          : "com.android.support:design:${versions.supportLibrary}",
+                            'chromeCustomTabs': "com.android.support:customtabs:${versions.supportLibrary}",
+                            'constraintLayout': "com.android.support.constraint:constraint-layout:${versions.constraintLayout}",
+                    ],
+            ],
+            'google' : [
+                    'oosLicenses': [
+                            'core': "com.google.android.gms:play-services-oss-licenses:${versions.googleServicesVersion}",
+                    ],
+            ],
+            'timber' : [
+                    'core': "com.jakewharton.timber:timber:${versions.timber}",
+            ],
+            'test'   : [
+                    'junit'         : "junit:junit:${versions.junit}",
+                    'mockito'       : "org.mockito:mockito-core:${versions.mockito}",
+                    'mockitoAndroid': "org.mockito:mockito-android:${versions.mockito}",
+                    'robolectric'   : "org.robolectric:robolectric:${versions.robolectric}",
+                    'supportRunner' : "com.android.support.test:runner:${versions.androidSupportRunner}",
+                    'expressoCore'  : "com.android.support.test.espresso:espresso-core:${versions.expresso}",
+            ]
+    ]
+
+    allprojects {
+        repositories {
+            jcenter()
+            google()
+            maven { url 'https://jitpack.io' }
+        }
+
+        // Force all of the primary support libraries to use the same version.
+        configurations.all {
+            resolutionStrategy {
+                eachDependency { details ->
+                    if (details.requested.group == 'com.android.support') {
+                        details.useVersion versions.supportLibrary
+                    }
+                }
+            }
+        }
+    }
+}
