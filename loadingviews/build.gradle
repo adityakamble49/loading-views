@@ -65,6 +65,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation deps.kotlin.stdlib.jre
+    implementation deps.android.support.supportV4
 
     testImplementation deps.test.junit
     testImplementation deps.test.mockito
