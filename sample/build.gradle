@@ -82,6 +82,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation deps.kotlin.stdlib.jre
+    implementation deps.timber.core
     implementation deps.google.oosLicenses.core
 
     testImplementation deps.test.junit
