@@ -5,6 +5,7 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.support.annotation.ColorInt
 import android.support.v4.content.res.ResourcesCompat
 import android.util.AttributeSet
 import android.view.View
@@ -29,6 +30,14 @@ class CCircles : View {
     private lateinit var circle1Paint: Paint
     private lateinit var circle2Paint: Paint
 
+    private val circle1ColorDefault = R.color.ccircle_circle1_fill
+    private val circle2ColorDefault = R.color.ccircle_circle2_fill
+
+    @ColorInt private var circle1Color = ResourcesCompat.getColor(resources, circle1ColorDefault,
+            null)
+    @ColorInt private var circle2Color = ResourcesCompat.getColor(resources, circle2ColorDefault,
+            null)
+
     companion object {
         private const val PN_CIRCLE_1_RADIUS = "circle_1_radius"
         private const val PN_CIRCLE_2_RADIUS = "circle_2_radius"
@@ -39,11 +48,13 @@ class CCircles : View {
     }
 
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+        attrs?.let { collectAttributes(it) }
         init()
     }
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs,
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs,
             defStyleAttr) {
+        attrs?.let { collectAttributes(it) }
         init()
     }
 
@@ -53,15 +64,30 @@ class CCircles : View {
     }
 
     /**
+     * Collect Custom Attributes for View
+     */
+    private fun collectAttributes(attrs: AttributeSet) {
+        // Collect attributes from in Typed Array
+        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.CCircles, 0, 0)
+
+        // Use Attributes
+        circle1Color = typedArray.getColor(R.styleable.CCircles_circle1Color, circle1Color)
+        circle2Color = typedArray.getColor(R.styleable.CCircles_circle2Color, circle2Color)
+
+        // Recycle This array
+        typedArray.recycle()
+    }
+
+    /**
      * Initialize View
      */
     private fun init() {
 
         // Initialize Paints
         circle1Paint = Paint(Paint.ANTI_ALIAS_FLAG)
-        circle1Paint.color = ResourcesCompat.getColor(resources, R.color.ccircle_circle1_fill, null)
+        circle1Paint.color = circle1Color
         circle2Paint = Paint(Paint.ANTI_ALIAS_FLAG)
-        circle2Paint.color = ResourcesCompat.getColor(resources, R.color.ccircle_circle2_fill, null)
+        circle2Paint.color = circle2Color
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
