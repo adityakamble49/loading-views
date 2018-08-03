@@ -1,18 +1,15 @@
 package com.adityakamble49.loadingviews
 
+import android.animation.PropertyValuesHolder
+import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
+import android.support.v4.content.res.ResourcesCompat
 import android.util.AttributeSet
 import android.view.View
 import com.adityakamble49.loadingviews.utils.f
 import com.adityakamble49.loadingviews.utils.i
-import android.animation.ValueAnimator
-import android.R.animator
-import android.animation.PropertyValuesHolder
-import android.R.attr.radius
-import android.support.v4.content.res.ResourcesCompat
 
 
 /**
@@ -31,6 +28,11 @@ class CCircles : View {
 
     private lateinit var circle1Paint: Paint
     private lateinit var circle2Paint: Paint
+
+    companion object {
+        private const val PN_CIRCLE_1_RADIUS = "circle_1_radius"
+        private const val PN_CIRCLE_2_RADIUS = "circle_2_radius"
+    }
 
     constructor(context: Context?) : super(context) {
         init()
@@ -69,35 +71,23 @@ class CCircles : View {
         circle1Radius = (Math.min(width, height) / 2 * 0.8).i
         circle2Radius = (Math.min(width, height) / 2 * 0.4).i
 
-        val circle1PropertyRadius = PropertyValuesHolder.ofInt("circle1Radius", circle1Radius,
+        val circle1RadiusProperty = PropertyValuesHolder.ofInt(PN_CIRCLE_1_RADIUS, circle1Radius,
                 circle2Radius)
-
-        val circle1Animator = ValueAnimator()
-        circle1Animator.setValues(circle1PropertyRadius)
-        circle1Animator.repeatMode = ValueAnimator.REVERSE
-        circle1Animator.repeatCount = ValueAnimator.INFINITE
-        circle1Animator.duration = 500
-        circle1Animator.addUpdateListener { animation ->
-            circle1Radius = animation.getAnimatedValue("circle1Radius") as Int
-            invalidate()
-        }
-
-        circle1Animator.start()
-
-        val circle2PropertyRadius = PropertyValuesHolder.ofInt("circle2Radius", circle2Radius,
+        val circle2RadiusProperty = PropertyValuesHolder.ofInt(PN_CIRCLE_2_RADIUS, circle2Radius,
                 circle1Radius)
 
-        val circle2Animator = ValueAnimator()
-        circle2Animator.setValues(circle2PropertyRadius)
-        circle2Animator.repeatMode = ValueAnimator.REVERSE
-        circle2Animator.repeatCount = ValueAnimator.INFINITE
-        circle2Animator.duration = 500
-        circle2Animator.addUpdateListener { animation ->
-            circle2Radius = animation.getAnimatedValue("circle2Radius") as Int
+        val circleAnimator = ValueAnimator()
+        circleAnimator.setValues(circle1RadiusProperty, circle2RadiusProperty)
+        circleAnimator.repeatMode = ValueAnimator.REVERSE
+        circleAnimator.repeatCount = ValueAnimator.INFINITE
+        circleAnimator.duration = 500
+        circleAnimator.addUpdateListener { animation ->
+            circle1Radius = animation.getAnimatedValue(PN_CIRCLE_1_RADIUS) as Int
+            circle2Radius = animation.getAnimatedValue(PN_CIRCLE_2_RADIUS) as Int
             invalidate()
         }
 
-        circle2Animator.start()
+        circleAnimator.start()
     }
 
     override fun onDraw(canvas: Canvas) {
