@@ -95,7 +95,7 @@ class CCircles : View {
         width = w.f
         height = h.f
         circle1Radius = (Math.min(width, height) / 2 * 0.8).i
-        circle2Radius = (Math.min(width, height) / 2 * 0.4).i
+        circle2Radius = (Math.min(width, height) / 2 * 0.3).i
 
         val circle1RadiusProperty = PropertyValuesHolder.ofInt(PN_CIRCLE_1_RADIUS, circle1Radius,
                 circle2Radius)
