@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--CCircle-->
     <color name="ccircle_circle1_fill">#b10303</color>
     <color name="ccircle_circle2_fill">#00FF00</color>
+
+    <!--MultiColors-->
+    <color name="multicolors_arc_fill">#00FF00</color>
+
 </resources>
