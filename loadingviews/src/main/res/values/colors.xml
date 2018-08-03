@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ccircle_circle1_fill">#f74da8</color>
-    <color name="ccircle_circle2_fill">#ffe731</color>
+    <color name="ccircle_circle1_fill">#b10303</color>
+    <color name="ccircle_circle2_fill">#00FF00</color>
 </resources>
