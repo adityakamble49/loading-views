@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0d0d0d"
-    tools:context=".MainActivity">
+    tools:context=".LoadingViewActivity">
 
     <com.adityakamble49.loadingviews.CCircles
         android:layout_width="100dp"
@@ -13,9 +13,5 @@
         android:layout_centerInParent="true"
         app:circle1Color="#566cc1"
         app:circle2Color="#c6d4d1" />
-
-    <com.adityakamble49.loadingviews.MultiColors
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
 
 </RelativeLayout>

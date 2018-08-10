@@ -7,6 +7,7 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.AdapterView
+import com.adityakamble49.loadingviewssample.LoadingViewActivity.Companion.LOADING_VIEW_POSITION
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -27,7 +28,9 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     }
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        startActivity(Intent(this, LoadingViewActivity::class.java))
+        val loadingViewIntent = Intent(this, LoadingViewActivity::class.java)
+        loadingViewIntent.putExtra(LOADING_VIEW_POSITION, position)
+        startActivity(loadingViewIntent)
     }
 
     private fun bindView() {

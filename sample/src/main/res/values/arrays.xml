@@ -2,5 +2,6 @@
 <resources>
     <string-array name="loading_views">
         <item>CCircle</item>
+        <item>MultiColors</item>
     </string-array>
 </resources>
