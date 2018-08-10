@@ -12,7 +12,6 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.animation.LinearInterpolator
 import com.adityakamble49.loadingviews.utils.f
-import timber.log.Timber
 
 
 /**
@@ -103,7 +102,6 @@ class MultiColors : View {
         startAngleAnimator.duration = 1000
         startAngleAnimator.addUpdateListener { animation ->
             arcStartAngle = (animation.getAnimatedValue(PN_ARC_START_ANGLE) as Int).f
-            Timber.i("arcStartAngle : $arcStartAngle")
             invalidate()
         }
 
@@ -115,7 +113,6 @@ class MultiColors : View {
         sweepAngleAnimator.duration = 1000
         sweepAngleAnimator.addUpdateListener { animation ->
             arcSweepAngle = (animation.getAnimatedValue(PN_ARC_SWEEP_ANGLE) as Int).f
-            Timber.i("arcSweepAngle: $arcSweepAngle")
             invalidate()
         }
 
