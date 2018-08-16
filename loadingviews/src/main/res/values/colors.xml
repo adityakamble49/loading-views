@@ -19,4 +19,9 @@
         <item>@color/multicolors_arc_fill_4</item>
     </array>
 
+    <!--HeartBeat-->
+    <color name="heartbeat_arc_fill_1">#FFFFFF</color>
+    <color name="heartbeat_arc_fill_2">#80FFFFFF</color>
+    <color name="heartbeat_arc_fill_3">#60FFFFFF</color>
+
 </resources>
