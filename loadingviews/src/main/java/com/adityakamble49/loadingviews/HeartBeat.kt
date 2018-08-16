@@ -121,7 +121,7 @@ class HeartBeat : View {
 
         val arc1IncreaseAnimator = ValueAnimator()
         arc1IncreaseAnimator.setValues(arc1SweepAngleIncrease)
-        arc1IncreaseAnimator.duration = 1000
+        arc1IncreaseAnimator.duration = 800
         arc1IncreaseAnimator.addUpdateListener { animation ->
             arc1SweepAngle = (animation.getAnimatedValue(PN_ARC_1_SWEEP_ANGLE) as Int).f
             invalidate()
@@ -132,7 +132,7 @@ class HeartBeat : View {
 
         val arc1DecreaseAnimator = ValueAnimator()
         arc1DecreaseAnimator.setValues(arc1SweepAngleDecrease)
-        arc1DecreaseAnimator.duration = 600
+        arc1DecreaseAnimator.duration = 400
         arc1DecreaseAnimator.addUpdateListener { animation ->
             arc1SweepAngle = (animation.getAnimatedValue(PN_ARC_1_SWEEP_ANGLE) as Int).f
             invalidate()
@@ -144,7 +144,7 @@ class HeartBeat : View {
 
         val arc2IncreaseAnimator = ValueAnimator()
         arc2IncreaseAnimator.setValues(arc2SweepAngleIncrease)
-        arc2IncreaseAnimator.duration = 800
+        arc2IncreaseAnimator.duration = 600
         arc2IncreaseAnimator.addUpdateListener { animation ->
             arc2SweepAngle = (animation.getAnimatedValue(PN_ARC_2_SWEEP_ANGLE) as Int).f
             invalidate()
@@ -155,7 +155,7 @@ class HeartBeat : View {
 
         val arc2DecreaseAnimator = ValueAnimator()
         arc2DecreaseAnimator.setValues(arc2SweepAngleDecrease)
-        arc2DecreaseAnimator.duration = 800
+        arc2DecreaseAnimator.duration = 600
         arc2DecreaseAnimator.addUpdateListener { animation ->
             arc2SweepAngle = (animation.getAnimatedValue(PN_ARC_2_SWEEP_ANGLE) as Int).f
             invalidate()
@@ -167,7 +167,7 @@ class HeartBeat : View {
 
         val arc3IncreaseAnimator = ValueAnimator()
         arc3IncreaseAnimator.setValues(arc3SweepAngleIncrease)
-        arc3IncreaseAnimator.duration = 600
+        arc3IncreaseAnimator.duration = 400
         arc3IncreaseAnimator.addUpdateListener { animation ->
             arc3SweepAngle = (animation.getAnimatedValue(PN_ARC_3_SWEEP_ANGLE) as Int).f
             invalidate()
@@ -178,7 +178,7 @@ class HeartBeat : View {
 
         val arc3DecreaseAnimator = ValueAnimator()
         arc3DecreaseAnimator.setValues(arc3SweepAngleDecrease)
-        arc3DecreaseAnimator.duration = 1000
+        arc3DecreaseAnimator.duration = 800
         arc3DecreaseAnimator.addUpdateListener { animation ->
             arc3SweepAngle = (animation.getAnimatedValue(PN_ARC_3_SWEEP_ANGLE) as Int).f
             invalidate()
