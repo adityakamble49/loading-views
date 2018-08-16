@@ -1,5 +1,6 @@
 package com.adityakamble49.loadingviews
 
+import android.animation.Animator
 import android.animation.PropertyValuesHolder
 import android.animation.ValueAnimator
 import android.content.Context
@@ -33,11 +34,19 @@ class MultiColors : View {
 
     private lateinit var oval: RectF
     private lateinit var arcPaint: Paint
-    private val arcColorDefault = R.color.multicolors_arc_fill
+    private val arcColorDefault = R.color.multicolors_arc_fill_1
     @ColorInt private var arcColor = ResourcesCompat.getColor(resources, arcColorDefault, null)
 
     private val PN_ARC_START_ANGLE = "arc_start_angle"
     private val PN_ARC_SWEEP_ANGLE = "arc_sweep_angle"
+
+    private var colorIndex = 0
+    private val arcColorsRes = arrayOf(
+            R.color.multicolors_arc_fill_1,
+            R.color.multicolors_arc_fill_2,
+            R.color.multicolors_arc_fill_3,
+            R.color.multicolors_arc_fill_4)
+    private val arcColors = IntArray(arcColorsRes.size)
 
     constructor(context: Context?) : super(context) {
         init()
@@ -76,6 +85,12 @@ class MultiColors : View {
         arcPaint.style = Paint.Style.STROKE
         arcPaint.strokeWidth = 5f
         arcPaint.color = arcColor
+        arcPaint.strokeWidth = 10f
+
+        // Initialize Arc Colors
+        arcColorsRes.forEachIndexed { index, i ->
+            arcColors[index] = ResourcesCompat.getColor(resources, i, null)
+        }
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -99,22 +114,35 @@ class MultiColors : View {
         startAngleAnimator.setValues(arcStartAngleProperty)
         startAngleAnimator.repeatMode = ValueAnimator.RESTART
         startAngleAnimator.repeatCount = ValueAnimator.INFINITE
-        startAngleAnimator.duration = 1000
+        startAngleAnimator.duration = 800
         startAngleAnimator.addUpdateListener { animation ->
             arcStartAngle = (animation.getAnimatedValue(PN_ARC_START_ANGLE) as Int).f
             invalidate()
         }
+
 
         val sweepAngleAnimator = ValueAnimator()
         sweepAngleAnimator.interpolator = LinearInterpolator()
         sweepAngleAnimator.setValues(arcSweepAngleProperty)
         sweepAngleAnimator.repeatMode = ValueAnimator.REVERSE
         sweepAngleAnimator.repeatCount = ValueAnimator.INFINITE
-        sweepAngleAnimator.duration = 1000
+        sweepAngleAnimator.duration = 800
         sweepAngleAnimator.addUpdateListener { animation ->
             arcSweepAngle = (animation.getAnimatedValue(PN_ARC_SWEEP_ANGLE) as Int).f
             invalidate()
         }
+
+        sweepAngleAnimator.addListener(object : Animator.AnimatorListener {
+            override fun onAnimationRepeat(animation: Animator?) {
+                colorIndex++
+                colorIndex %= 8
+                if (colorIndex % 2 == 0) arcPaint.color = arcColors[colorIndex / 2]
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {}
+            override fun onAnimationCancel(animation: Animator?) {}
+            override fun onAnimationStart(animation: Animator?) {}
+        })
 
         startAngleAnimator.start()
         sweepAngleAnimator.start()

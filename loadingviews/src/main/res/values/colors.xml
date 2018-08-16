@@ -7,5 +7,9 @@
 
     <!--MultiColors-->
     <color name="multicolors_arc_fill">#00FF00</color>
+    <color name="multicolors_arc_fill_1">#FF0000</color>
+    <color name="multicolors_arc_fill_3">#0000FF</color>
+    <color name="multicolors_arc_fill_2">#009f00</color>
+    <color name="multicolors_arc_fill_4">#b7ff00</color>
 
 </resources>
