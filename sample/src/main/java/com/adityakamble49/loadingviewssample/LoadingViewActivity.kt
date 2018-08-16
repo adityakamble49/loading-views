@@ -10,18 +10,26 @@ class LoadingViewActivity : AppCompatActivity() {
 
         const val POS_CCIRCLES = 0
         const val POS_MULTICOLORS = 1
+        const val POS_HEARTBEAT = 2
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayout(intent.getIntExtra(LOADING_VIEW_POSITION, 0)))
+        val position = intent.getIntExtra(LOADING_VIEW_POSITION, 0)
+        setContentView(getLayout(position))
+        supportActionBar?.title = getTitle(position)
     }
 
     private fun getLayout(loadingViewPosition: Int): Int {
         return when (loadingViewPosition) {
             POS_CCIRCLES -> R.layout.activity_ccircles
             POS_MULTICOLORS -> R.layout.activity_multicolors
+            POS_HEARTBEAT -> R.layout.activity_heartbeat
             else -> R.layout.activity_ccircles
         }
+    }
+
+    private fun getTitle(loadingViewPosition: Int): String {
+        return resources.getStringArray(R.array.loading_views)[loadingViewPosition]
     }
 }
