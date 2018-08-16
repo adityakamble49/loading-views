@@ -3,4 +3,18 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--MultiColors Custom-->
+    <color name="multicolors_custom_arc_fill_1">#32B92D</color>
+    <color name="multicolors_custom_arc_fill_3">#FF6EB0</color>
+    <color name="multicolors_custom_arc_fill_2">#93228D</color>
+    <color name="multicolors_custom_arc_fill_4">#F2635F</color>
+
+    <array name="multiColorsCustom">
+        <item>@color/multicolors_custom_arc_fill_1</item>
+        <item>@color/multicolors_custom_arc_fill_2</item>
+        <item>@color/multicolors_custom_arc_fill_3</item>
+        <item>@color/multicolors_custom_arc_fill_4</item>
+    </array>
+
 </resources>
