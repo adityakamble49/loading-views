@@ -6,6 +6,7 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.graphics.Path
 import android.graphics.RectF
 import android.support.annotation.ColorInt
 import android.support.v4.content.res.ResourcesCompat
@@ -47,6 +48,13 @@ class HeartBeat : View {
             R.color.heartbeat_arc_fill_3, null)
 
     private lateinit var oval: RectF
+
+    private var lineStartX = 0f
+    private var lineStartY = 0f
+    private var lineEndX = 0f
+    private var lineEndY = 0f
+    private lateinit var heartBeatPathPaint: Paint
+    private lateinit var heartBeatPath: Path
 
     companion object {
         private const val PN_ARC_1_SWEEP_ANGLE = "arc1_sweep_angle"
@@ -101,6 +109,11 @@ class HeartBeat : View {
         arc3Paint.color = arc3Color
         arc3Paint.style = Paint.Style.STROKE
         arc3Paint.strokeWidth = 15f
+
+        heartBeatPathPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+        heartBeatPathPaint.color = arc1Color
+        heartBeatPathPaint.style = Paint.Style.STROKE
+        heartBeatPathPaint.strokeWidth = 10f
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -114,7 +127,46 @@ class HeartBeat : View {
         oval = RectF()
         oval.set(widthPadding, heightPadding, width - widthPadding, height - heightPadding)
 
+        lineStartX = width - widthPadding
+        lineStartY = height / 2
+        lineEndX = width - (width / 4) - widthPadding
+        lineEndY = height / 2
 
+        heartBeatPath = Path()
+        heartBeatPath.moveTo(lineStartX, lineStartY)
+        heartBeatPath.lineTo(lineEndX, lineEndY)
+
+        lineStartX = lineEndX
+        lineStartY = lineEndY
+        lineEndX = width - (width / 2) - widthPadding
+        lineEndY = height / 4 - heightPadding
+
+        heartBeatPath.moveTo(lineStartX, lineStartY)
+        heartBeatPath.lineTo(lineEndX, lineEndY)
+
+        lineStartX = lineEndX
+        lineStartY = lineEndY
+        lineEndX = (width / 4) - widthPadding
+        lineEndY = height / 2
+
+        heartBeatPath.moveTo(lineStartX, lineStartY)
+        heartBeatPath.lineTo(lineEndX, lineEndY)
+
+        lineStartX = lineEndX
+        lineStartY = lineEndY
+        lineEndX = widthPadding
+        lineEndY = height / 2
+
+        heartBeatPath.moveTo(lineStartX, lineStartY)
+        heartBeatPath.lineTo(lineEndX, lineEndY)
+
+        heartBeatPath.close()
+
+        setupArcAnimators()
+        setupHeartBeatAnimator()
+    }
+
+    private fun setupArcAnimators() {
         // ARC 1 Animator
         val arc1SweepAngleIncrease = PropertyValuesHolder.ofInt(PN_ARC_1_SWEEP_ANGLE,
                 arcIncrementSweepAngleStart, arcIncrementSweepAngleEnd)
@@ -215,6 +267,9 @@ class HeartBeat : View {
         arc1IncreaseAnimator.start()
         arc2IncreaseAnimator.start()
         arc3IncreaseAnimator.start()
+    }
+
+    private fun setupHeartBeatAnimator() {
     }
 
     override fun onDraw(canvas: Canvas) {
