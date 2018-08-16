@@ -12,4 +12,11 @@
     <color name="multicolors_arc_fill_2">#009f00</color>
     <color name="multicolors_arc_fill_4">#b7ff00</color>
 
+    <array name="multiColorsDefault">
+        <item>@color/multicolors_arc_fill_1</item>
+        <item>@color/multicolors_arc_fill_2</item>
+        <item>@color/multicolors_arc_fill_3</item>
+        <item>@color/multicolors_arc_fill_4</item>
+    </array>
+
 </resources>

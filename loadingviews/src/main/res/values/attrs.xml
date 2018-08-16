@@ -4,4 +4,7 @@
         <attr name="circle1Color" format="color" />
         <attr name="circle2Color" format="color" />
     </declare-styleable>
+    <declare-styleable name="MultiColors">
+        <attr name="multiColorArray" format="reference" />
+    </declare-styleable>
 </resources>

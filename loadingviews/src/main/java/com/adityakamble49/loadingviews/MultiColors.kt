@@ -41,12 +41,7 @@ class MultiColors : View {
     private val PN_ARC_SWEEP_ANGLE = "arc_sweep_angle"
 
     private var colorIndex = 0
-    private val arcColorsRes = arrayOf(
-            R.color.multicolors_arc_fill_1,
-            R.color.multicolors_arc_fill_2,
-            R.color.multicolors_arc_fill_3,
-            R.color.multicolors_arc_fill_4)
-    private val arcColors = IntArray(arcColorsRes.size)
+    private var arcColors = resources.getIntArray(R.array.multiColorsDefault)
 
     constructor(context: Context?) : super(context) {
         init()
@@ -73,6 +68,15 @@ class MultiColors : View {
      */
     private fun collectAttributes(attrs: AttributeSet) {
         // Collect attributes from in Typed Array
+        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.MultiColors, 0, 0)
+
+        // Use Attributes
+        val multiColorResId = typedArray.getResourceId(R.styleable.MultiColors_multiColorArray,
+                R.array.multiColorsDefault)
+        arcColors = resources.getIntArray(multiColorResId)
+
+        // Recycle This array
+        typedArray.recycle()
     }
 
     /**
@@ -86,11 +90,6 @@ class MultiColors : View {
         arcPaint.strokeWidth = 5f
         arcPaint.color = arcColor
         arcPaint.strokeWidth = 10f
-
-        // Initialize Arc Colors
-        arcColorsRes.forEachIndexed { index, i ->
-            arcColors[index] = ResourcesCompat.getColor(resources, i, null)
-        }
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
