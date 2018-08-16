@@ -188,13 +188,26 @@ class HeartBeat : View {
             override fun onAnimationRepeat(animation: Animator?) {}
             override fun onAnimationEnd(animation: Animator?) {
                 arc1DecreaseAnimator.startDelay = 300
-                arc1DecreaseAnimator.start()
                 arc2DecreaseAnimator.startDelay = 300
-                arc2DecreaseAnimator.start()
                 arc3DecreaseAnimator.startDelay = 300
+
+                arc1DecreaseAnimator.start()
+                arc2DecreaseAnimator.start()
                 arc3DecreaseAnimator.start()
             }
 
+            override fun onAnimationCancel(animation: Animator?) {}
+            override fun onAnimationStart(animation: Animator?) {}
+        })
+
+        arc3DecreaseAnimator.addListener(object : Animator.AnimatorListener {
+            override fun onAnimationEnd(animation: Animator?) {
+                arc1IncreaseAnimator.start()
+                arc2IncreaseAnimator.start()
+                arc3IncreaseAnimator.start()
+            }
+
+            override fun onAnimationRepeat(animation: Animator?) {}
             override fun onAnimationCancel(animation: Animator?) {}
             override fun onAnimationStart(animation: Animator?) {}
         })
