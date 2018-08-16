@@ -87,7 +87,6 @@ class MultiColors : View {
         // Initialize Paints
         arcPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         arcPaint.style = Paint.Style.STROKE
-        arcPaint.strokeWidth = 5f
         arcPaint.color = arcColor
         arcPaint.strokeWidth = 10f
     }
