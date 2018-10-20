@@ -25,7 +25,5 @@ before_script:
     # Prepare pre-accepted licenses to not be promted at installation
     - mkdir -p "$ANDROID_HOME/licenses"
     - cp ./google-licenses/* "$ANDROID_HOME/licenses/"
-    - echo "bintray.user=adityakamble49" >> $HOME/local.properties
-    - echo "bintray.apiKey=1284f307e56d4d6e92e90e177acdc2a1" >> $HOME/local.properties
 script:
     - ./gradlew build check
