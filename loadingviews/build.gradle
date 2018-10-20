@@ -2,6 +2,31 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+ext {
+    bintrayRepo = 'LoadingViews'
+    bintrayName = 'com.adityakamble49.loadingviews'
+
+    publishedGroupId = 'com.adityakamble49.loadingviews'
+    artifact = 'loadingviews'
+    libraryName = 'loadingviews'
+    libraryVersion = '0.3.1'
+
+    libraryDescription = 'Loading Library for Android'
+    siteUrl = 'https://github.com/adityakamble49/loading-views'
+    gitUrl = 'https://github.com/adityakamble49/loading-views.git'
+    githubRepository = 'adityakamble49/loading-views'
+
+    developerId = 'adityakamble49'
+    developerName = 'Aditya Kamble'
+    developerEmail = 'adityakamble49@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 
 android {
     compileSdkVersion buildConfig.compileSdk
@@ -61,6 +86,10 @@ android {
     }
 }
 
+tasks.withType(Javadoc) {
+    enabled = false
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -74,4 +103,9 @@ dependencies {
     androidTestImplementation deps.test.mockitoAndroid
     androidTestImplementation deps.test.supportRunner
     androidTestImplementation deps.test.expressoCore
+}
+
+if (project.rootProject.file('local.properties').exists()) {
+    apply from: 'https://raw.githubusercontent.com/adityakamble49/adityakamble49.com/gh-pages/android-lib/install.gradle'
+    apply from: 'https://raw.githubusercontent.com/adityakamble49/adityakamble49.com/gh-pages/android-lib/bintray.gradle'
 }
