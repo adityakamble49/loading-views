@@ -4,8 +4,8 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'loading-views'
+    bintrayRepo = 'LoadingViews'
+    bintrayName = 'com.adityakamble49.loadingviews'
 
     publishedGroupId = 'com.adityakamble49.loadingviews'
     libraryName = 'loading-views'
