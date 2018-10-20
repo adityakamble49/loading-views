@@ -1,5 +1,7 @@
 # Loading Views
 
+[![Build Status](https://travis-ci.org/adityakamble49/loading-views.svg?branch=master)](https://travis-ci.org/adityakamble49/loading-views)
+
 ## Development
 
 ### Prerequisites
