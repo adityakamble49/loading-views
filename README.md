@@ -1,6 +1,31 @@
 # Loading Views
 
-[![Build Status](https://travis-ci.org/adityakamble49/loading-views.svg?branch=master)](https://travis-ci.org/adityakamble49/loading-views)
+[![Build Status](https://travis-ci.org/adityakamble49/loading-views.svg?branch=master)](https://travis-ci.org/adityakamble49/loading-views) [ ![Download](https://api.bintray.com/packages/adityakamble49/LoadingViews/com.adityakamble49.loadingviews/images/download.svg) ](https://bintray.com/adityakamble49/LoadingViews/com.adityakamble49.loadingviews/_latestVersion)  [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/adityakamble49)
+
+## Download
+
+```groovy
+dependencies {
+  implementation 'com.adityakamble49.loadingviews:loadingviews:0.3.1'
+}
+```
+
+## Usage
+ 
+```xml
+<com.adityakamble49.loadingviews.CCircles
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:circle1Color="#566cc1"
+        app:circle2Color="#c6d4d1" />
+```
+
+Refer **sample** module for library usage
+
+
+## Changelog
+
+Read changes in [release](https://github.com/adityakamble49/loading-views/releases) tab
 
 ## Development
 
